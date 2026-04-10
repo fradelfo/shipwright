@@ -19,7 +19,7 @@ Read and apply this role perspective for this phase:
 
 - [Software Architect](../roles/software-architect.md) (lead role)
 
-Note: Developer role arrives in P2. Until then, the Architect covers implementation sequencing.
+Note: Developer provides a reality-check in this phase (flags unrealistic task sizes, unclear verification criteria). Load the [Developer](../roles/developer.md) role as a support voice if available.
 
 If the role file cannot be loaded: "WARNING: Could not load Software Architect role definition. Proceeding with reduced capability."
 
@@ -137,9 +137,9 @@ Write the artifact to disk **before** presenting transition options.
 
 After saving, announce:
 
-> "Plan ready at `docs/shipwright/plan/YYYY-MM-DD-<topic>.md`. Start building with your preferred approach."
+> "Plan ready at `docs/shipwright/plan/YYYY-MM-DD-<topic>.md`. Invoke `/sw-build docs/shipwright/plan/YYYY-MM-DD-<topic>.md` to begin implementation."
 
-The Build skill (`sw-build`) arrives in P2. The plan document is immediately useful as a standalone artifact — it can guide manual implementation or any build tool.
+Pass the explicit artifact path — do not rely on fuzzy matching. The plan document is also immediately useful as a standalone artifact for manual implementation.
 
 ## Plan Template
 

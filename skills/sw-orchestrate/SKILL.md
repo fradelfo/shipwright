@@ -76,11 +76,24 @@ Say: "Invoking sw-plan for: [user's description]"
 
 Invoke the `sw-plan` skill, passing the user's original description as the argument.
 
+After sw-plan completes, the user invokes `sw-build` with the plan artifact path, then `sw-ship` when the build is ready for review.
+
 ### Major Tier
 
 Say: "Invoking sw-discover for: [user's description]"
 
 Invoke the `sw-discover` skill, passing the user's original description as the argument.
+
+After sw-discover completes, the user invokes `sw-plan` with the discovery artifact path, then `sw-build`, then `sw-ship`.
+
+### Full Lifecycle Reference
+
+| Phase | Skill | Lead Role | Produces |
+|-------|-------|-----------|---------|
+| Discover | `sw-discover` | Product Manager | Discovery doc |
+| Plan | `sw-plan` | Architect | Plan with ADRs |
+| Build | `sw-build` | Developer | Working code + build artifact |
+| Ship | `sw-ship` | QA | Review findings + PR command |
 
 ## Principles
 

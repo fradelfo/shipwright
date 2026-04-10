@@ -11,10 +11,20 @@ shipwright/
 │   ├── sw-orchestrate/SKILL.md   # Tier classification & routing
 │   ├── sw-discover/SKILL.md      # PM-led discovery phase
 │   ├── sw-plan/SKILL.md          # Architect-led planning phase
+│   ├── sw-build/SKILL.md         # Developer-led build phase
+│   ├── sw-ship/SKILL.md          # QA-led ship & review phase
 │   └── roles/                    # Passive persona definitions (not skills)
 │       ├── product-manager.md
 │       ├── ux-designer.md
-│       └── software-architect.md
+│       ├── software-architect.md
+│       ├── developer.md
+│       └── qa.md
+├── agents/
+│   └── review/                   # Sub-agent instruction sets (not skills)
+│       ├── correctness.md
+│       ├── security.md
+│       ├── simplicity.md
+│       └── performance.md
 └── docs/
     └── design.md                 # Design specification
 ```
@@ -37,6 +47,18 @@ shipwright/
 - [ ] Body uses standard markdown headings, not XML tags
 - [ ] SKILL.md under 500 lines
 - [ ] References use proper markdown link syntax: `[name](./path)`, not backtick references
+
+**Exception — `Bash(*)`:** `sw-build` uses `Bash(*)` rather than specific patterns. This is an intentional, documented exception: test commands vary per project stack and cannot be enumerated ahead of time. All other skills must enumerate specific Bash patterns.
+
+## Agent File Convention
+
+Agent files live in `agents/<category>/` and are sub-agent instruction sets dispatched by phase skills. They are **not** slash commands.
+
+- Frontmatter: `name`, `type: agent`, `perspective`, `severity-levels`
+- No `description` field — agents are not invokable as skills
+- Body: one-paragraph focus statement, heuristics checklist, output template
+- Target 40-60 lines per agent file
+- Agents receive scoped input (git diff + plan path), not full conversation context
 
 ## Role File Convention
 
