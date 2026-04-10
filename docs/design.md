@@ -2,7 +2,7 @@
 
 > "Build the whole ship."
 
-**Status:** Draft
+**Status:** v0.3.0 — complete
 **Author:** Francesco
 **Date:** 2026-04-10
 
