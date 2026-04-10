@@ -14,6 +14,7 @@ shipwright/
 │   ├── sw-plan/SKILL.md          # Architect-led planning phase
 │   ├── sw-build/SKILL.md         # Developer-led build phase
 │   ├── sw-ship/SKILL.md          # QA-led ship & review phase
+│   ├── sw-status/SKILL.md        # In-flight work tracker
 │   └── roles/                    # Passive persona definitions (not skills)
 │       ├── product-manager.md
 │       ├── ux-designer.md

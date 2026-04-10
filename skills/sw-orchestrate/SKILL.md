@@ -108,6 +108,7 @@ After sw-discover completes, the user invokes `sw-plan` with the discovery artif
 | Plan | `sw-plan` | Architect | Plan with ADRs |
 | Build | `sw-build` | Developer | Working code + build artifact |
 | Ship | `sw-ship` | QA | Review findings + PR command |
+| Status | `sw-status` | — | In-flight work summary |
 
 ## Principles
 

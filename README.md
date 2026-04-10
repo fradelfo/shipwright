@@ -28,6 +28,7 @@ Every request hits the orchestrator first. It classifies complexity and routes t
 | Plan | Architect | Architecture decisions, ADRs, ordered task sequence |
 | Build | Developer | Working code, TDD loop, QA companion per task |
 | Ship | QA | Review findings, PR description, changelog entry |
+| Status | — | In-flight work summary across all phases |
 
 ## Installation
 
@@ -67,6 +68,8 @@ claude --plugin-dir ~/.claude/plugins/shipwright
 /sw-plan "add pagination to the users endpoint"
 /sw-build docs/shipwright/plan/2026-04-10-pagination.md
 /sw-ship docs/shipwright/build/2026-04-10-pagination.md
+/sw-status                                             # see what's in flight
+/sw-status "pagination"                                # filter by topic
 ```
 
 ## Artifacts
@@ -122,7 +125,9 @@ Every ship phase writes a `docs/shipwright/learn/` entry — a distilled retrosp
 
 ## Design
 
-See [docs/design.md](docs/design.md) for the full design specification, including architecture decisions and the rationale behind each phase.
+See [docs/methodology.md](docs/methodology.md) for the full methodology explanation — the thinking behind the phases, roles, and design decisions.
+
+See [docs/design.md](docs/design.md) for the original design specification.
 
 ## License
 
