@@ -1,7 +1,7 @@
 ---
 title: "feat: Shipwright P1 — Plugin Foundation, Orchestrator, Discover, Plan & Roles"
 type: feat
-status: active
+status: completed
 date: 2026-04-10
 deepened: 2026-04-10
 origin: docs/design.md
