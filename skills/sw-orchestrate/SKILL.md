@@ -19,6 +19,9 @@ Read the user's `$ARGUMENTS` description. Apply the following heuristics to dete
 
 | Signal | Tier |
 |--------|------|
+| User mentions inherited, legacy, or someone else's codebase | Rescue |
+| User says the project is a mess, chaotic, or without structure | Rescue |
+| User says "I don't know where to start" about an *existing* project | Rescue |
 | User explicitly states scope ("quick fix", "small change", "one-liner") | Quick |
 | User explicitly states scope ("big feature", "major refactor", "not sure yet") | Major |
 | Request references a specific file and a specific change | Quick |
@@ -32,6 +35,7 @@ Additional rules:
 - Always trust the user's own assessment of scope when explicitly stated.
 - When multiple signals conflict, prefer the higher tier.
 - A request that names one file but describes an unclear change is Standard, not Quick.
+- Rescue signals ("inherited", "legacy", "someone else wrote this") take precedence over Major signals when both are present — the user needs to understand what exists before discovering what to build.
 
 ## Announce Classification
 
@@ -52,12 +56,21 @@ Accept override phrases from the user:
 - "just do it" / "skip planning" — switch to Quick
 - "let's think about this" / "let's discover first" — switch to Major
 - "plan it" / "make a plan" — switch to Standard
+- "audit it" / "audit first" / "let's understand what we have" — switch to Rescue
 
 Wait for the user to confirm or override before routing.
 
 ## Routing
 
 After classification is confirmed, route to the appropriate phase.
+
+### Rescue Tier
+
+Say: "Invoking sw-audit for: [user's description]"
+
+Invoke the `sw-audit` skill, passing the user's original description as the argument.
+
+After sw-audit completes, the user picks a roadmap item and invokes `sw-plan` with the audit artifact path, then `sw-build`, then `sw-ship`.
 
 ### Quick Tier
 
@@ -90,6 +103,7 @@ After sw-discover completes, the user invokes `sw-plan` with the discovery artif
 
 | Phase | Skill | Lead Role | Produces |
 |-------|-------|-----------|---------|
+| Audit | `sw-audit` | Architect + PM | Project map, health signals, triage roadmap |
 | Discover | `sw-discover` | Product Manager | Discovery doc |
 | Plan | `sw-plan` | Architect | Plan with ADRs |
 | Build | `sw-build` | Developer | Working code + build artifact |

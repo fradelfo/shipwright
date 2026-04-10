@@ -9,6 +9,7 @@ shipwright/
 ├── AGENTS.md                     # This file — development conventions
 ├── skills/
 │   ├── sw-orchestrate/SKILL.md   # Tier classification & routing
+│   ├── sw-audit/SKILL.md         # Architect+PM-led project audit (rescue entry point)
 │   ├── sw-discover/SKILL.md      # PM-led discovery phase
 │   ├── sw-plan/SKILL.md          # Architect-led planning phase
 │   ├── sw-build/SKILL.md         # Developer-led build phase

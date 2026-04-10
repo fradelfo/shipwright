@@ -14,6 +14,7 @@ Every request hits the orchestrator first. It classifies complexity and routes t
 
 | Tier | Signal | Lifecycle |
 |------|--------|-----------|
+| **Rescue** | Inherited, messy, or chaotic existing codebase | Audit → Plan → Build → Ship |
 | **Quick** | Single file, clear intent | Just do it. Developer role, Karpathy principles. |
 | **Standard** | Multi-file, some ambiguity | Plan → Build → Ship |
 | **Major** | New capability, vague requirements | Discover → Plan → Build → Ship |
@@ -22,6 +23,7 @@ Every request hits the orchestrator first. It classifies complexity and routes t
 
 | Phase | Lead Role | Output |
 |-------|-----------|--------|
+| Audit | Architect + PM | Project map, health signals, triage roadmap |
 | Discover | Product Manager | Problem statement, user flows, scoped MVP |
 | Plan | Architect | Architecture decisions, ADRs, ordered task sequence |
 | Build | Developer | Working code, TDD loop, QA companion per task |
@@ -56,8 +58,11 @@ claude --plugin-dir ~/.claude/plugins/shipwright
 ```bash
 # Let the orchestrator classify and route
 /sw-orchestrate "add user authentication"
+/sw-orchestrate "I inherited this codebase and have no idea where to start"
 
 # Jump directly to a phase
+/sw-audit                                          # audit current directory
+/sw-audit "messy Rails app I just took over"       # with context
 /sw-discover "we need better onboarding"
 /sw-plan "add pagination to the users endpoint"
 /sw-build docs/shipwright/plan/2026-04-10-pagination.md
@@ -70,6 +75,7 @@ Shipwright saves all artifacts into your project repo under `docs/shipwright/`. 
 
 ```
 docs/shipwright/
+├── audit/       # Audit reports — project map, health signals, triage roadmap
 ├── discover/    # Discovery documents — problem statements, user flows, scoped MVP
 ├── plan/        # Implementation plans — ADRs, task sequences, verification criteria
 ├── build/       # Build logs — task completion status, QA findings per task
