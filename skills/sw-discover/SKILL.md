@@ -6,7 +6,7 @@ description: >
   ambiguous. Also use when the user says "let's think about this", "I'm
   not sure what to build", or "help me figure out requirements."
 argument-hint: [feature or problem to discover]
-allowed-tools: Read, Write, Glob, Bash(mkdir *)
+allowed-tools: Read, Write, Glob, Bash(mkdir *), Bash(ls *)
 ---
 
 # Shipwright Discovery
@@ -44,7 +44,27 @@ Load the PM, UX, and Architect role perspectives. Use judgment about which persp
 - If the problem is clear but flows are vague, start with UX (user flow mapping).
 - If the problem and flows are clear but technical feasibility is unknown, start with Architect.
 
-The four activities below are guidance, not an enforced sequence. Adapt to the user's needs.
+The activities below are guidance, not an enforced sequence. Adapt to the user's needs.
+
+### 0. Past Learnings (always runs first)
+
+Before beginning problem framing, check for relevant past learnings from previous ship phases:
+
+```bash
+ls docs/shipwright/learn/ 2>/dev/null
+```
+
+If the directory is empty or does not exist: skip silently — proceed to Problem Framing with no message.
+
+If learn files exist: use Glob to list all files in `docs/shipwright/learn/`, read the most recent 5, and assess their relevance to the current topic inline. Surface relevant learnings to the user before proceeding:
+
+> **Past learnings from similar work:**
+> - [YYYY-MM-DD] [Topic]: [Key insight — one sentence]
+> - [YYYY-MM-DD] [Topic]: [Key insight — one sentence]
+>
+> Proceeding to Problem Framing with this context in mind.
+
+If none of the recent entries are relevant to the current topic: skip the block entirely — do not show irrelevant learnings.
 
 ### 1. Problem Framing (PM perspective)
 

@@ -20,11 +20,17 @@ shipwright/
 │       ├── developer.md
 │       └── qa.md
 ├── agents/
-│   └── review/                   # Sub-agent instruction sets (not skills)
-│       ├── correctness.md
-│       ├── security.md
-│       ├── simplicity.md
-│       └── performance.md
+│   ├── review/                   # Code review agents (dispatched by sw-ship)
+│   │   ├── correctness.md
+│   │   ├── security.md
+│   │   ├── simplicity.md
+│   │   └── performance.md
+│   ├── qa/                       # QA agents (dispatched by sw-build and sw-ship)
+│   │   ├── edge-case-hunter.md
+│   │   └── exploratory-tester.md
+│   └── research/                 # Research agents (dispatched by sw-plan)
+│       ├── codebase-analyst.md
+│       └── docs-researcher.md
 └── docs/
     └── design.md                 # Design specification
 ```

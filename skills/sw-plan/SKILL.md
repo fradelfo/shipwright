@@ -6,7 +6,7 @@ description: >
   plan before coding. Also use when the user says "plan the implementation",
   "how should I build this", or "break this into tasks."
 argument-hint: [feature to plan, or path to discovery doc]
-allowed-tools: Read, Write, Glob, Grep, Bash(mkdir *), Bash(ls *)
+allowed-tools: Read, Write, Glob, Grep, WebFetch, Bash(mkdir *), Bash(ls *)
 ---
 
 # Shipwright Plan
@@ -45,11 +45,25 @@ Produce an implementation plan containing ALL of these sections:
 
 ## How to Get There
 
-Apply the Software Architect perspective. The four activities are guidance, not an enforced sequence:
+Apply the Software Architect perspective. The activities below are guidance, not an enforced sequence:
+
+### 0. Research Agent Dispatch (always runs first)
+
+Before the Architect begins designing, dispatch research agents to ground the plan in the actual codebase and current external documentation.
+
+**Codebase Analyst** — always dispatch:
+
+Apply the [Codebase Analyst](../../agents/research/codebase-analyst.md) perspective to survey the existing codebase. The agent reads the directory structure, key conventions, relevant files, and existing abstractions. Inject the pattern inventory into the Architect's context before Codebase Analysis begins.
+
+**Docs Researcher** — dispatch if the plan references external libraries, frameworks, or APIs:
+
+Apply the [Docs Researcher](../../agents/research/docs-researcher.md) perspective for each external dependency that the plan will interact with. The agent fetches current docs and surfaces version-specific gotchas. If internet access is unavailable, the agent falls back to local documentation and emits a WARNING.
+
+Use both agent findings as primary context for all subsequent activities.
 
 ### 1. Codebase Analysis
 
-Read existing patterns, conventions, and relevant files before proposing anything.
+Read existing patterns, conventions, and relevant files before proposing anything. Use the Codebase Analyst's pattern inventory (from Step 0) as the starting point rather than surveying from scratch.
 
 For projects with existing code:
 - Identify the directory structure and file naming conventions

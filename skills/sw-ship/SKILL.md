@@ -63,12 +63,15 @@ Identify what changed:
 
 ### 2. Exploratory Testing (QA lead, adversarial)
 
-Apply the QA role's core questions against the changed code. This is not a scripted checklist — it is an adversarial exploration:
+Dispatch the [Exploratory Tester](../../agents/qa/exploratory-tester.md) with:
+- The full git diff
+- The build artifact path (for intent context — what was planned vs. what shipped)
 
-- Try to break it with unexpected inputs
-- Trace failure paths end to end
-- Look for silent failures, unchecked assumptions, and missing error handling
-- Note findings with severity: Critical / High / Medium / Low
+The exploratory tester explores non-obvious entry points, interrupted flows, repeated actions, and unexpected inputs from a user-behaviour perspective — not a scripted checklist.
+
+**Fallback:** If agent dispatch is not supported, apply the exploratory-tester's heuristics in-conversation using the QA role's adversarial stance.
+
+Collect findings with severity: Critical / High / Medium / Low.
 
 ### 3. Parallel Review Agent Dispatch
 
@@ -165,6 +168,41 @@ date: YYYY-MM-DD
 upstream: <path-to-build-artifact, or null>
 ---
 ```
+
+## Save Learning
+
+After saving the ship artifact, extract the Retrospective and write a separate learn file:
+
+```bash
+mkdir -p docs/shipwright/learn/
+```
+
+Write `docs/shipwright/learn/YYYY-MM-DD-<topic>.md` using this template:
+
+```markdown
+---
+type: learn
+topic: <topic-slug>
+date: YYYY-MM-DD
+upstream: docs/shipwright/ship/YYYY-MM-DD-<topic>.md
+tags: [tag1, tag2]
+---
+
+# Learning: <Topic>
+
+## Retrospective
+
+[Retrospective paragraph from the ship artifact — copied verbatim]
+
+## Key Insights
+
+- [Distilled, one-sentence actionable insight]
+- [Second insight if applicable]
+```
+
+**Tags:** Derive from the topic slug (split on hyphens) plus any domain words from the retrospective text (e.g., "auth", "caching", "api").
+
+Write the learn file **before** announcing the transition.
 
 ## Transition
 

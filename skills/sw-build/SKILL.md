@@ -61,6 +61,20 @@ Read the plan artifact (or synthesise tasks from the description). Extract:
 
 Confirm task count with the user: "Found N tasks. Starting with task 1: [description]. Proceed?"
 
+**Parallel Execution (opt-in):** If the plan artifact annotates task groups as `[parallel]`, or the user requests parallel execution, offer to run independent task groups simultaneously using git worktrees:
+
+> "Tasks [N, M] are flagged as independent. Run them in parallel worktrees for speed? This requires git worktree support."
+
+If confirmed:
+1. Create one worktree per group: `git worktree add ../sw-<topic>-task<N> HEAD`
+2. Dispatch one sub-agent per worktree, each receiving: the plan artifact path, its specific task group (goal, files, verification criterion), and its worktree path as working directory
+3. Sub-agents report task completion and QA findings via output — they do not write build artifacts; the orchestrating agent owns the single build artifact
+4. After all groups complete: `git worktree remove ../sw-<topic>-task<N>` for each
+5. If a sub-agent fails, surface the failure to the user before proceeding
+
+**Fallback:** If Task dispatch is not supported, run all task groups sequentially. The `[parallel]` annotation is advisory — never blocks.
+**Conflict guard:** Before creating worktrees, verify that the parallel task groups do not share any files. Warn the user and decline to split if file scope overlaps.
+
 ### 2. TDD Loop (per task)
 
 For each task in order:
@@ -87,7 +101,13 @@ After each task completes, the QA role asks its core questions against the just-
 
 QA rates any findings Critical / High / Medium / Low. Critical and High findings are addressed before moving to the next task. Medium and Low are advisory — recorded in the build artifact.
 
-**Quick tier:** If the tier is Quick and no QA companion is warranted, the Developer role runs its self-QA checklist instead (defined in the Developer role file).
+After the five in-conversation questions, dispatch the [Edge Case Hunter](../../agents/qa/edge-case-hunter.md) for systematic depth:
+- Input: the just-written code unit + the task's verification criterion
+- The agent generates boundary values, null/empty/large inputs, idempotency checks, and failure-injection scenarios
+- Critical and High findings from the edge-case-hunter also block the next task
+- **Fallback:** If agent dispatch is not supported, the five in-conversation questions serve as the complete QA companion for that task.
+
+**Quick tier:** If the tier is Quick and no QA companion is warranted, the Developer role runs its self-QA checklist instead (defined in the Developer role file). Edge-case-hunter is not dispatched for Quick tier.
 
 ### 4. Write Build Artifact
 
