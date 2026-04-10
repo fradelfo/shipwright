@@ -1,0 +1,16 @@
+{
+  "name": "shipwright",
+  "version": "0.1.0",
+  "description": "Opinionated development methodology for shipping products, not just writing code",
+  "author": {
+    "name": "Francesco"
+  },
+  "license": "MIT",
+  "keywords": [
+    "methodology",
+    "planning",
+    "discovery",
+    "architecture",
+    "product-thinking"
+  ]
+}
