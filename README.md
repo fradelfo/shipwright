@@ -25,6 +25,7 @@ Every request hits the orchestrator first. It classifies complexity and routes t
 |-------|-----------|--------|
 | Audit | Architect + PM | Project map, health signals, triage roadmap |
 | Discover | Product Manager | Problem statement, user flows, scoped MVP |
+| Design | UX Design Strategist | JTBD, mental model, IA, interaction principles, design critique |
 | Plan | Architect | Architecture decisions, ADRs, ordered task sequence |
 | Build | Developer | Working code, TDD loop, QA companion per task |
 | Ship | QA | Review findings, PR description, changelog entry |
@@ -65,6 +66,8 @@ claude --plugin-dir ~/.claude/plugins/shipwright
 /sw-audit                                          # audit current directory
 /sw-audit "messy Rails app I just took over"       # with context
 /sw-discover "we need better onboarding"
+/sw-design docs/shipwright/discover/2026-04-11-onboarding.md  # after discover
+/sw-design "rethink the checkout flow"             # standalone, no upstream needed
 /sw-plan "add pagination to the users endpoint"
 /sw-build docs/shipwright/plan/2026-04-10-pagination.md
 /sw-ship docs/shipwright/build/2026-04-10-pagination.md
@@ -80,6 +83,7 @@ Shipwright saves all artifacts into your project repo under `docs/shipwright/`. 
 docs/shipwright/
 ├── audit/       # Audit reports — project map, health signals, triage roadmap
 ├── discover/    # Discovery documents — problem statements, user flows, scoped MVP
+├── design/      # Design strategy — JTBD, IA, interaction principles, design critique
 ├── plan/        # Implementation plans — ADRs, task sequences, verification criteria
 ├── build/       # Build logs — task completion status, QA findings per task
 ├── ship/        # Ship artifacts — review findings, PR body, changelog entry
@@ -114,7 +118,7 @@ Five roles define how each phase thinks. They are passive persona definitions �
 | Role | Lead Phase | Voice |
 |------|------------|-------|
 | Product Manager | Discover | Problem-first, outcome-focused |
-| UX Designer | Discover | Journey-first, user-behaviour |
+| UX Design Strategist | Design | Strategic, empathetic, adversarial-toward-confusion |
 | Software Architect | Plan | Trade-off-first, boring-technology |
 | Developer | Build | Pragmatic, surgical, test-driven |
 | QA | Ship | Adversarial, release-disciplined |

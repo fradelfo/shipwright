@@ -18,7 +18,7 @@ PM-led exploration of what to build and why.
 Read and apply these role perspectives for this phase:
 
 - [Product Manager](../roles/product-manager.md) (lead role)
-- [UX Designer](../roles/ux-designer.md) (support role)
+- [UX Design Strategist](../roles/ux-designer.md) (support role — strategy questions only; full design work happens in sw-design)
 - [Software Architect](../roles/software-architect.md) (feasibility check)
 
 ## Context
@@ -129,7 +129,7 @@ Write the artifact to disk BEFORE presenting transition options.
 
 After saving, announce:
 
-> Discovery complete. Invoke `/sw-plan docs/shipwright/discover/YYYY-MM-DD-<topic>.md` to plan the implementation.
+> Discovery complete. Invoke `/sw-design docs/shipwright/discover/YYYY-MM-DD-<topic>.md` to develop the UX strategy, or `/sw-plan docs/shipwright/discover/YYYY-MM-DD-<topic>.md` to go straight to implementation planning.
 
 Pass the explicit artifact path — do not rely on fuzzy matching.
 

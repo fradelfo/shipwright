@@ -105,6 +105,7 @@ After sw-discover completes, the user invokes `sw-plan` with the discovery artif
 |-------|-------|-----------|---------|
 | Audit | `sw-audit` | Architect + PM | Project map, health signals, triage roadmap |
 | Discover | `sw-discover` | Product Manager | Discovery doc |
+| Design | `sw-design` | UX Design Strategist | JTBD, IA, interaction principles, design critique |
 | Plan | `sw-plan` | Architect | Plan with ADRs |
 | Build | `sw-build` | Developer | Working code + build artifact |
 | Ship | `sw-ship` | QA | Review findings + PR command |

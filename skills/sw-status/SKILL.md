@@ -36,6 +36,7 @@ Glob all markdown files across all phase directories:
 ```
 docs/shipwright/audit/**/*.md
 docs/shipwright/discover/**/*.md
+docs/shipwright/design/**/*.md
 docs/shipwright/plan/**/*.md
 docs/shipwright/build/**/*.md
 docs/shipwright/ship/**/*.md
@@ -58,7 +59,8 @@ Next-step logic:
 | Highest phase complete | Next step |
 |------------------------|-----------|
 | audit | `/sw-discover <topic>` or `/sw-plan docs/shipwright/audit/…` |
-| discover | `/sw-plan docs/shipwright/discover/…` |
+| discover | `/sw-design docs/shipwright/discover/…` or `/sw-plan docs/shipwright/discover/…` |
+| design | `/sw-plan docs/shipwright/design/…` |
 | plan | `/sw-build docs/shipwright/plan/…` |
 | build | `/sw-ship docs/shipwright/build/…` |
 | ship | Chain complete — retrospective saved to learn/ |
